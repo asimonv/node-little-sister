@@ -40,6 +40,10 @@ passport.deserializeUser(function(obj, cb) {
 
 const app = express();
 
+if (app.get("env") == "development") {
+  require("dotenv").config();
+}
+
 app.use(
   session({
     resave: true,
