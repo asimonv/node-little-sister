@@ -17,7 +17,8 @@ passport.use(
     {
       consumerKey: process.env.TWITTER_CONSUMER_KEY,
       consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-      callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+      callbackURL:
+        "https://asimonv.github.io/node-little-sister/auth/twitter/callback"
     },
     function(token, tokenSecret, profile, cb) {
       // In this example, the user's Twitter profile is supplied as the user
