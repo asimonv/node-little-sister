@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const express = require("express");
 const watson = require("watson-developer-cloud/tone-analyzer/v3");
 const PersonalityInsightsV3 = require("watson-developer-cloud/personality-insights/v3");
