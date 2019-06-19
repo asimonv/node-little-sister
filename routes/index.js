@@ -46,6 +46,7 @@ router.post("/", (req, res, next) => {
 
 router.post("/tweets", async (req, res, next) => {
   const { userId } = req.body;
+  console.log(`getting tweets from: ${userId}`);
   const tweets = await T.get("statuses/user_timeline", {
     user_id: userId,
     count: 200
