@@ -55,6 +55,7 @@ router.post("/tweets", async (req, res, next) => {
     console.log("got tweets");
     res.json(tweets);
   } catch (e) {
+    console.log(e);
     res.json({ message: e });
   }
 });
