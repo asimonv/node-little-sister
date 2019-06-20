@@ -11,9 +11,9 @@ router.get("/twitter", (req, res, next) => {
 
 router.get("/twitter/callback", (req, res, next) => {
   passport.authenticate("twitter", (err, user, info) => {
-    const { screen_name } = user;
-    console.log(user);
-    res.redirect(`littlesister://home?user=${screen_name}`);
+    const { username } = user;
+    console.log(username);
+    res.redirect(`littlesister://home?user=${username}`);
   })(req, res, next);
 });
 
