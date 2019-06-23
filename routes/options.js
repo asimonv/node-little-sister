@@ -7,7 +7,16 @@ router.get("/text_categories", (req, res, next) => {
     "Brexit",
     "Britain 🇬🇧",
     "Theresa May",
-    "pineapple pizza 🍍🍕"
+    "pineapple pizza 🍍🍕",
+    "human sadness",
+    "David Bowie 👩‍🎤",
+    "rainy days",
+    "Rafael Nadal",
+    "Roger Federer",
+    "Manchester United 🔴",
+    "Chelsea 🔵",
+    "Arsenal 🔴⚪️",
+    "Liverpool 🔴"
   ];
   res.json({ data: categories });
 });
