@@ -20,6 +20,10 @@
     "watson-developer-cloud": "^4.0.1"
   },
   "devDependencies": {
-    "dotenv": "^8.0.0"
+    "dotenv": "^8.2.0",
+    "eslint": "^6.6.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "^1.18.2"
   }
 }

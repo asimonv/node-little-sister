@@ -12,12 +12,14 @@ const authRouter = require("./routes/auth");
 const optionsRouter = require("./routes/options");
 const spotifyRouter = require("./routes/spotify");
 
+const { TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET } = require("./config");
+
 // Passport config
 passport.use(
   new TwitterStrategy(
     {
-      consumerKey: process.env.TWITTER_CONSUMER_KEY,
-      consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+      consumerKey: TWITTER_CONSUMER_KEY,
+      consumerSecret: TWITTER_CONSUMER_SECRET,
       callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
     },
     function(token, tokenSecret, profile, cb) {
@@ -70,7 +72,7 @@ app.use(function(req, res, next) {
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
