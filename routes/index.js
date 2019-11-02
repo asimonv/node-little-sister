@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const watson = require("watson-developer-cloud/tone-analyzer/v3");
 const PersonalityInsightsV3 = require("watson-developer-cloud/personality-insights/v3");
@@ -46,18 +48,12 @@ router.post("/", (req, res, next) => {
 
 router.post("/tweets", async (req, res, next) => {
   const { userId } = req.body;
-  console.log(`getting tweets from: ${userId}`);
-  try {
-    const tweets = await T.get("statuses/user_timeline", {
-      screen_name: userId,
-      count: 200
-    });
-    console.log("got tweets");
-    res.json(tweets);
-  } catch (e) {
-    console.log(e);
-    res.json({ message: e });
-  }
+  const tweets = await T.get("statuses/user_timeline", {
+    user_id: userId,
+    count: 200
+  });
+  console.log("got tweets");
+  res.json(tweets);
 });
 
 router.post("/p_insights", (req, res, next) => {

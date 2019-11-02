@@ -10,6 +10,7 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
 const optionsRouter = require("./routes/options");
+const spotifyRouter = require("./routes/spotify");
 
 // Passport config
 passport.use(
@@ -17,7 +18,7 @@ passport.use(
     {
       consumerKey: process.env.TWITTER_CONSUMER_KEY,
       consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-      callbackURL: "https://little-sister.herokuapp.com/auth/twitter/callback"
+      callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
     },
     function(token, tokenSecret, profile, cb) {
       // In this example, the user's Twitter profile is supplied as the user
@@ -40,10 +41,6 @@ passport.deserializeUser(function(obj, cb) {
 
 const app = express();
 
-if (app.get("env") == "development") {
-  require("dotenv").config();
-}
-
 app.use(
   session({
     resave: true,
@@ -65,6 +62,7 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/auth", authRouter);
 app.use("/options", optionsRouter);
+app.use("/spotify", spotifyRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

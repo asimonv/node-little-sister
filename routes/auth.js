@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
@@ -11,9 +13,9 @@ router.get("/twitter", (req, res, next) => {
 
 router.get("/twitter/callback", (req, res, next) => {
   passport.authenticate("twitter", (err, user, info) => {
-    const { username } = user;
-    console.log(username);
-    res.redirect(`littlesister://home?user=${username}`);
+    console.log(user);
+    const { id } = user;
+    res.redirect(`littlesister://home?user=${id}`);
   })(req, res, next);
 });
 
