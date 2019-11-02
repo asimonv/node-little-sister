@@ -12,7 +12,11 @@ const authRouter = require("./routes/auth");
 const optionsRouter = require("./routes/options");
 const spotifyRouter = require("./routes/spotify");
 
-const { TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET } = require("./config");
+const {
+  TWITTER_CONSUMER_KEY,
+  TWITTER_CONSUMER_SECRET,
+  TWITTER_CALLBACK_URL
+} = require("./config");
 
 // Passport config
 passport.use(
@@ -20,7 +24,7 @@ passport.use(
     {
       consumerKey: TWITTER_CONSUMER_KEY,
       consumerSecret: TWITTER_CONSUMER_SECRET,
-      callbackURL: "http://127.0.0.1:3000/auth/twitter/callback"
+      callbackURL: TWITTER_CALLBACK_URL
     },
     function(token, tokenSecret, profile, cb) {
       // In this example, the user's Twitter profile is supplied as the user

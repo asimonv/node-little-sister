@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const axios = require("axios");
 
 router.get("/twitter", (req, res, next) => {
   passport.authenticate("twitter", (err, user, info) => {
