@@ -19,30 +19,4 @@ router.get("/twitter/callback", (req, res, next) => {
   })(req, res, next);
 });
 
-router.post("/cambridge", async (req, res, next) => {
-  try {
-    // this parse may fail
-    const body = {
-      customer_id: parseInt(process.env.CAMBRIDGE_CUSTOMER_ID, 10),
-      api_key: process.env.CAMBRIDGE_API_KEY
-    };
-
-    console.log(body);
-
-    const headers = {
-      "Content-type": "application/json",
-      Accept: "application/json"
-    };
-
-    const cambridgeRes = await axios.post(
-      process.env.CAMBRIDGE_API_ENDPOINT,
-      body,
-      { headers }
-    );
-    return res.json(cambridgeRes.response.data);
-  } catch (err) {
-    console.log(err);
-  }
-});
-
 module.exports = router;

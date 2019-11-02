@@ -1,7 +1,6 @@
 require("dotenv").config();
 
 const express = require("express");
-const watson = require("watson-developer-cloud/tone-analyzer/v3");
 const PersonalityInsightsV3 = require("watson-developer-cloud/personality-insights/v3");
 const Twit = require("twit");
 const router = express.Router();
@@ -15,35 +14,9 @@ const T = new Twit({
   strictSSL: true // optional - requires SSL certificates to be valid.
 });
 
-const text =
-  "Team, I know that times are tough! Product " +
-  "sales have been disappointing for the past three " +
-  "quarters. We have a competitive product, but we " +
-  "need to do a better job of selling it!";
-
-const toneParams = {
-  tone_input: { text: text },
-  content_type: "application/json"
-};
-
-const toneAnalyzer = new watson({
-  version: "2017-09-21", // or the more current version of watson
-  iam_apikey: process.env.TONE_ANALYZER_IAM_APIKEY
-});
-
 const personality_insights = new PersonalityInsightsV3({
   iam_apikey: process.env.PERSONALITY_INSIGHTS_APIKEY,
   version: process.env.PERSONALITY_INSIGHTS_VERSION_DATE
-});
-
-router.post("/", (req, res, next) => {
-  toneAnalyzer.tone(toneParams, (error, data) => {
-    if (error) {
-      console.log(error);
-    } else {
-      return res.json(data);
-    }
-  });
 });
 
 router.post("/tweets", async (req, res, next) => {
