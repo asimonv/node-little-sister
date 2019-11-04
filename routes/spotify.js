@@ -11,7 +11,7 @@ router.get("/credentials", (req, res, next) => {
 
 router.get("/callback", (req, res, next) => {
   const { code } = req.query;
-  res.redirect(`littlesister://home?spotify_auth_code=${code}`);
+  res.redirect(`littlesister://results?spotify_auth_code=${code}`);
 });
 
 module.exports = router;
