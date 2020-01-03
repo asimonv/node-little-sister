@@ -42,8 +42,7 @@ router.post("/p_insights", (req, res, next) => {
     content: contentItems ? content : text,
     content_type: contentItems ? "application/json" : "text/plain",
     raw_scores: true,
-    consumption_preferences: true,
-    content_language: language
+    consumption_preferences: true
   };
 
   personality_insights
