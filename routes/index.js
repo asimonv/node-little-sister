@@ -36,13 +36,16 @@ router.post("/tweets", async (req, res, next) => {
 
 router.post("/p_insights", (req, res, next) => {
   const { content } = req.body;
-  const { contentItems, text } = content;
+  const { contentItems, text, language } = content;
   const params = {
     content: contentItems ? content : text,
     content_type: contentItems ? "application/json" : "text/plain",
     raw_scores: true,
-    consumption_preferences: true
+    consumption_preferences: true,
+    content_language: language
   };
+
+  console.log(params);
 
   personality_insights
     .profile(params)
