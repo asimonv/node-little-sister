@@ -1,0 +1,9 @@
+{
+    "editor.fontSize": 17,
+    // Set the default
+    "editor.formatOnSave": true,
+    "[javascriptreact]": {
+      "editor.formatOnSave": true
+    }
+  }
+  
