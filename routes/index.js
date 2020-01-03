@@ -36,8 +36,7 @@ router.post("/tweets", async (req, res, next) => {
 
 router.post("/p_insights", (req, res, next) => {
   const { content } = req.body;
-  const { contentItems, text, language } = content;
-  console.log(language);
+  const { contentItems, text } = content;
   const params = {
     content: contentItems ? content : text,
     content_type: contentItems ? "application/json" : "text/plain",
