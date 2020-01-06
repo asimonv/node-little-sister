@@ -38,7 +38,7 @@ router.post("/p_insights", (req, res, next) => {
   const { content } = req.body;
   const { contentItems, text, language } = content;
   const params = {
-    content: { contentItems } || text,
+    content: contentItems ? { contentItems } : text,
     content_type: contentItems ? "application/json" : "text/plain",
     raw_scores: true,
     consumption_preferences: true,
