@@ -42,7 +42,7 @@ router.post("/p_insights", (req, res, next) => {
     content_type: contentItems ? "application/json" : "text/plain",
     raw_scores: true,
     consumption_preferences: true,
-    content_language: `Content-Language: ${language}`
+    content_language: language
   };
 
   console.log(params);
