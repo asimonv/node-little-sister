@@ -40,6 +40,8 @@ router.get("/dummy_data", (req, res, next) => {
     { "id": 2, "title": "Smashed potatoes" },
     { "id": 3, "title": "Cucumbers" }
   ];
+
+  res.json({ data })
 })
 
 module.exports = router;
