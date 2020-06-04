@@ -33,4 +33,13 @@ router.get("/text_categories", (req, res, next) => {
   res.json({ data: categories });
 });
 
+router.get("/dummy_data", (req, res, next) => {
+  const data = [
+    { "id": 0, "title": "Rice" },
+    { "id": 1, "title": "Pasta" },
+    { "id": 2, "title": "Smashed potatoes" },
+    { "id": 3, "title": "Cucumbers" }
+  ];
+})
+
 module.exports = router;
