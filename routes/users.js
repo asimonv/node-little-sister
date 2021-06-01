@@ -16,7 +16,7 @@ router.get("/opinions", async (req, res, next) => {
   res.json(jsonArray);
 });
 
-router.post("/opinions", async (req, res, next) => {
+router.post("/opinions", (req, res, next) => {
   const { body } = req;
   var newLine = "\r\n";
   console.log(body);
@@ -28,12 +28,19 @@ router.post("/opinions", async (req, res, next) => {
 
   const csvFilePath = `${process.cwd()}/public/opinions.csv`;
   //write the actual data and end with newline
-  var csv = json2csv(toCsv) + newLine;
 
-  fs.appendFile(csvFilePath, csv, function(err) {
-    if (err) throw err;
-    console.log('The "data to append" was appended to file!');
-  });
+  try {
+    var csv = json2csv(toCsv) + newLine;
+
+    console.warn(csv);
+
+    fs.appendFile(csvFilePath, csv, function(err) {
+      if (err) throw err;
+      console.log('The "data to append" was appended to file!');
+    });
+  } catch (error) {
+    res.json({ error });
+  }
 });
 
 module.exports = router;
