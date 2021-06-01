@@ -19,9 +19,14 @@ router.post("/opinions", async (req, res, next) => {
   const { body } = req;
   const csvFilePath = `${process.cwd()}/public/opinions.csv`;
   const { append, end } = csvAppend(csvFilePath);
-  append(body);
-  await end();
-  res.json(await csv().fromFile(csvFilePath));
+
+  try {
+    append(body);
+    await end();
+    res.json(await csv().fromFile(csvFilePath));
+  } catch (error) {
+    res.json(error);
+  }
 });
 
 module.exports = router;
