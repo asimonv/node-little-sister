@@ -1,4 +1,5 @@
 var express = require("express");
+const csv=require('csvtojson')
 var router = express.Router();
 
 const fs = require("fs");
@@ -8,15 +9,10 @@ router.get("/", function(req, res, next) {
   res.send("respond with a resource");
 });
 
-router.get("/opinions", () => {
-  console.log(`${process.cwd()}/public/opinions.csv`);
-  fs.readFile(`${process.cwd()}/public/opinions.csv`, "utf8", (err, data) => {
-    if (err) {
-      console.error(err);
-      return;
-    }
-    console.log(data);
-  });
+router.get("/opinions", async (_, res, _) => {
+  const csvFilePath = `${process.cwd()}/public/opinions.csv`;
+  const jsonArray = await csv().fromFile(csvFilePath);
+  res.json(jsonArray);
 });
 
 module.exports = router;
