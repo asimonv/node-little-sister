@@ -17,6 +17,7 @@ router.get("/opinions", async (req, res, next) => {
 
 router.post("/opinions", async (req, res, next) => {
   const { body } = req;
+  console.log(body);
   const csvFilePath = `${process.cwd()}/public/opinions.csv`;
   const { append, end } = csvAppend(csvFilePath);
 
