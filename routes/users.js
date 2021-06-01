@@ -1,8 +1,8 @@
 var express = require("express");
 const csv = require("csvtojson");
-var router = express.Router();
+const csvAppend = require("csv-append");
 
-const fs = require("fs");
+var router = express.Router();
 
 /* GET users listing. */
 router.get("/", function(req, res, next) {
@@ -17,7 +17,11 @@ router.get("/opinions", async (req, res, next) => {
 
 router.post("/opinions", async (req, res, next) => {
   const { body } = req;
-  console.log(body);
+  const csvFilePath = `${process.cwd()}/public/opinions.csv`;
+  const { append, end } = csvAppend(csvFilePath);
+  append(body);
+  await end();
+  res.json(await csv().fromFile(csvFilePath));
 });
 
 module.exports = router;
