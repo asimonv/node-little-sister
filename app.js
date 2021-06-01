@@ -11,11 +11,12 @@ const usersRouter = require("./routes/users");
 const authRouter = require("./routes/auth");
 const optionsRouter = require("./routes/options");
 const spotifyRouter = require("./routes/spotify");
+const cors = require("cors");
 
 const {
   TWITTER_CONSUMER_KEY,
   TWITTER_CONSUMER_SECRET,
-  TWITTER_CALLBACK_URL
+  TWITTER_CALLBACK_URL,
 } = require("./config");
 
 // Passport config
@@ -24,7 +25,7 @@ passport.use(
     {
       consumerKey: TWITTER_CONSUMER_KEY,
       consumerSecret: TWITTER_CONSUMER_SECRET,
-      callbackURL: TWITTER_CALLBACK_URL
+      callbackURL: TWITTER_CALLBACK_URL,
     },
     function(token, tokenSecret, profile, cb) {
       // In this example, the user's Twitter profile is supplied as the user
@@ -52,9 +53,10 @@ app.use(
     resave: true,
     saveUninitialized: true,
     cookie: { secure: "auto" },
-    secret: process.env.SESSION_KEY
+    secret: process.env.SESSION_KEY,
   })
 );
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
