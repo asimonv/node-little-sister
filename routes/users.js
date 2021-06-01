@@ -39,7 +39,7 @@ router.post("/opinions", (req, res, next) => {
       console.log('The "data to append" was appended to file!');
     });
   } catch (error) {
-    res.json({ error });
+    res.body(error);
   }
 });
 
