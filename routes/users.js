@@ -9,7 +9,8 @@ router.get("/", function(req, res, next) {
 });
 
 router.get("/opinions", () => {
-  fs.readFile("../data/opinions.csv", "utf8", (err, data) => {
+  console.log(`${process.cwd()}/public/opinions.csv`);
+  fs.readFile(`${process.cwd()}/public/opinions.csv`, "utf8", (err, data) => {
     if (err) {
       console.error(err);
       return;
