@@ -1,6 +1,7 @@
 var express = require("express");
 const csv = require("csvtojson");
-const csvAppend = require("csv-append");
+var json2csv = require("json2csv");
+const fs = require("fs");
 
 var router = express.Router();
 
@@ -17,17 +18,22 @@ router.get("/opinions", async (req, res, next) => {
 
 router.post("/opinions", async (req, res, next) => {
   const { body } = req;
+  var newLine = "\r\n";
   console.log(body);
-  const csvFilePath = `${process.cwd()}/public/opinions.csv`;
-  const { append, end } = csvAppend(csvFilePath);
+  var toCsv = {
+    data: [body],
+    fields: ["name", "comment"],
+    header: false,
+  };
 
-  try {
-    append(body);
-    await end();
-    res.json(await csv().fromFile(csvFilePath));
-  } catch (error) {
-    res.json(error);
-  }
+  const csvFilePath = `${process.cwd()}/public/opinions.csv`;
+  //write the actual data and end with newline
+  var csv = json2csv(toCsv) + newLine;
+
+  fs.appendFile(csvFilePath, csv, function(err) {
+    if (err) throw err;
+    console.log('The "data to append" was appended to file!');
+  });
 });
 
 module.exports = router;
