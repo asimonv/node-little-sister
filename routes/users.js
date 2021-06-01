@@ -15,4 +15,9 @@ router.get("/opinions", async (req, res, next) => {
   res.json(jsonArray);
 });
 
+router.post("/opinions", async (req, res, next) => {
+  const { body } = req;
+  console.log(body);
+});
+
 module.exports = router;
